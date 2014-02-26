@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html ng-app="app">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    {% block stylesheets %}
+        {% stylesheets filter='cssrewrite'
+        '@DKCoreBundle/Resources/public/vendor/bootstrap/css/bootstrap.css' %}
+        <link href="{{ asset_url }}" rel="stylesheet" media="screen"/>
+        {% endstylesheets %}
+    {% endblock %}
+
+    {% block top_javascripts %}
+        {% javascripts
+        '@DKCoreBundle/Resources/public/vendor/jquery/jquery.js'
+        '@DKCoreBundle/Resources/public/vendor/angular/angular.js'
+        '@DKCoreBundle/Resources/public/vendor/bootstrap/js/bootstrap.js' %}
+        <script src="{{ asset_url }}"></script>
+        {% endjavascripts %}
+
+        <script>
+            var app = angular.module('app', [])
+                .config(['$interpolateProvider', function ($interpolateProvider) {
+                    $interpolateProvider.startSymbol('[[');
+                    $interpolateProvider.endSymbol(']]');
+                }]);
+        </script>
+    {% endblock %}
+</head>
+
+<body>
+<div class="container">
+    <div class="jumbotron">
+        <h1>Scan Manager</h1>
+    </div>
+
+    {% block content %}
+    {% endblock %}
+</div>
+
+{% block javascripts %}
+    <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+    <script src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
+{% endblock %}
+</body>
+</html>

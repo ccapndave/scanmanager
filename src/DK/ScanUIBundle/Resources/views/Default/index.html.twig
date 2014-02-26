@@ -1,0 +1,36 @@
+{% extends '@DKCore/base.html.twig' %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        app.controller("ScanController", function($scope, $window, $http, $timeout) {
+            (function refresh() {
+                $http({ method: 'get', url: Routing.generate("dk_scanner_scanner_status") })
+                        .success(function(result) {
+                            if (result.scannedId) {
+                                $window.location = Routing.generate("scan_edit", { id: result.scannedId });
+                            } else {
+                                $scope.status = result;
+                            }
+                        })
+                        .then(function() {
+                            $timeout(refresh, 1000);
+                        });
+            })();
+
+            $scope.startScan = function() {
+                $http({ method: 'post', url: Routing.generate("dk_scanner_scanner_startscan") });
+            };
+        });
+    </script>
+{% endblock %}
+
+{% block content %}
+    <div ng-controller="ScanController">
+        <div class="alert alert-warning" ng-show="!status.isIdle">Scanner is busy...</div>
+        <div class="alert alert-danger" ng-show="!status.isLoaded && status.isIdle">No document is loaded.  Please load a document into the feeder.</div>
+        <div class="alert alert-success" ng-show="status.isLoaded && status.isIdle">Ready to scan!</div>
+
+        <a class="btn btn-primary btn-lg" ng-show="status.isLoaded && status.isIdle" ng-click="startScan()">Start scan</a>
+    </div>
+{% endblock %}

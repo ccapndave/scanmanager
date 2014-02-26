@@ -1,0 +1,17 @@
+dk_scan_ui:
+    resource: "@DKScanUIBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+#dk_core:
+#    resource: "@DKCoreBundle/Controller/"
+#    type:     annotation
+#    prefix:   /core
+
+dk_scanner:
+    resource: "@DKScannerBundle/Controller/"
+    type:     annotation
+    prefix:   /scanner
+
+fos_js_routing:
+    resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"
