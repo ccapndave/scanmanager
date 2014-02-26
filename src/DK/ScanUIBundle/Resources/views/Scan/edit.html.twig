@@ -1,16 +1,33 @@
-{% extends '::base.html.twig' %}
+{% extends '@DKCore/base.html.twig' %}
 
-{% block body -%}
-    <h1>Scan edit</h1>
+{% form_theme edit_form 'DKCoreBundle:Form:fields.html.twig' %}
 
-    {{ form(edit_form) }}
+{% block javascripts %}
+    {{ parent() }}
+    {% javascripts '@DKScanUIBundle/Resources/public/vendor/jquery-media/jquery.media.js' %}
+    <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
 
-        <ul class="record_actions">
-    <li>
-        <a href="{{ path('scan') }}">
-            Back to the list
-        </a>
-    </li>
-    <li>{{ form(delete_form) }}</li>
-</ul>
+    <script>
+        $('a.media').media({ width: "100%" });
+    </script>
+{% endblock %}
+
+{% block content -%}
+    <div class="col-sm-6">
+        {{ form(edit_form) }}
+
+        <!--<ul class="record_actions">
+            <li>
+                <a href="{{ path('scan') }}">
+                    Back to the list
+                </a>
+            </li>
+            <li>{{ form(delete_form) }}</li>
+        </ul>-->
+    </div>
+
+    <div class="col-sm-6">
+        <a class="media" href="/scans/{{ entity.filename }}"></a>
+    </div>
 {% endblock %}

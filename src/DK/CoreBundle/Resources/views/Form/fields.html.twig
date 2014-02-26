@@ -1,0 +1,22 @@
+{% extends 'form_div_layout.html.twig' %}
+
+{% block form_row %}
+    <div class="form-group">
+    {{ parent() }}
+    </div>
+{% endblock %}
+
+{% block form_label %}
+    {% set label_attr = label_attr|merge({'class': 'col-sm-2 control-label'}) %}
+    {{ parent() }}
+{% endblock %}
+
+{% block widget_attributes %}
+    {{ parent() }}
+    class="form-control"
+{% endblock %}
+
+{% block button_attributes %}
+    {{ parent() }}
+    class="btn btn-lg btn-danger"
+{% endblock %}

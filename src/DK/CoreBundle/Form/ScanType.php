@@ -14,11 +14,9 @@ class ScanType extends AbstractType {
      */
     public function buildForm(FormBuilderInterface $builder, array $options) {
         $builder
-            ->add('type')
             ->add('date')
-            ->add('sender')
-            ->add('mimeType')
-            ->add('filename');
+            ->add('type')
+            ->add('sender');
     }
 
     /**
