@@ -1,30 +1,43 @@
 {% extends '@DKCore/base.html.twig' %}
 
-{% form_theme edit_form 'DKCoreBundle:Form:fields.html.twig' %}
+{% form_theme edit_form 'DKCoreBundle:Form:fields.html.twig' _self %}
 
 {% block javascripts %}
     {{ parent() }}
-    {% javascripts '@DKScanUIBundle/Resources/public/vendor/jquery-media/jquery.media.js' %}
+    {{ form_javascript(edit_form) }}
+
+    {% javascripts
+    '@DKScanUIBundle/Resources/public/vendor/jquery-media/jquery.media.js' %}
     <script src="{{ asset_url }}"></script>
     {% endjavascripts %}
 
     <script>
-        $('a.media').media({ width: "100%" });
+        $('a.media').media({ width: "100%", height: 650 });
     </script>
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ form_stylesheet(edit_form) }}
 {% endblock %}
 
 {% block content -%}
     <div class="col-sm-6">
-        {{ form(edit_form) }}
+        {{ form_start(edit_form) }}
+        {{ form_row(edit_form.date) }}
+        {{ form_row(edit_form.type) }}
+        {{ form_row(edit_form.sender) }}
 
-        <!--<ul class="record_actions">
-            <li>
-                <a href="{{ path('scan') }}">
-                    Back to the list
-                </a>
-            </li>
-            <li>{{ form(delete_form) }}</li>
-        </ul>-->
+        <div class="row">
+            <div class="col-sm-11">
+                {{ form_row(edit_form.tags) }}
+            </div>
+            <div class="col-sm-1">
+                <!-- A hacky way to get an add button onto the select -->
+                <button class="btn btn-warning" style="position: relative; right: 16px; top: 25px;">+</button>
+            </div>
+        </div>
+        {{ form_end(edit_form) }}
     </div>
 
     <div class="col-sm-6">

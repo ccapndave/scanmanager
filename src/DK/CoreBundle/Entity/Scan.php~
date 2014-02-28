@@ -8,7 +8,6 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Scan
  *
- * @ORM\Table()
  * @ORM\Entity()
  */
 class Scan {
@@ -23,33 +22,38 @@ class Scan {
 
     /**
      * @var string
-     * @ORM\Column(name="type", type="string", length=255, nullable=true)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $type;
 
     /**
      * @var date
-     * @ORM\Column(name="date", type="date", nullable=true)
+     * @ORM\Column(type="date", nullable=true)
      */
     private $date;
 
     /**
      * @var string
-     * @ORM\Column(name="sender", type="string", length=255, nullable=true)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $sender;
 
     /**
      * @var string
-     * @ORM\Column(name="mimeType", type="string", length=255)
+     * @ORM\Column(type="string", length=255)
      */
     private $mimeType;
 
     /**
      * @var string
-     * @ORM\Column(name="filename", type="string", length=255)
+     * @ORM\Column(type="string", length=255)
      */
     private $filename;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="DK\CoreBundle\Entity\Tag")
+     */
+    private $tags;
 
     /**
      * Get id
@@ -129,8 +133,7 @@ class Scan {
      * @param string $sender
      * @return Scan
      */
-    public function setSender($sender)
-    {
+    public function setSender($sender) {
         $this->sender = $sender;
 
         return $this;
@@ -139,10 +142,30 @@ class Scan {
     /**
      * Get sender
      *
-     * @return string 
+     * @return string
      */
-    public function getSender()
-    {
+    public function getSender() {
         return $this->sender;
+    }
+
+    /**
+     * Set mimeType
+     *
+     * @param string $mimeType
+     * @return Scan
+     */
+    public function setMimeType($mimeType) {
+        $this->mimeType = $mimeType;
+
+        return $this;
+    }
+
+    /**
+     * Get mimeType
+     *
+     * @return string
+     */
+    public function getMimeType() {
+        return $this->mimeType;
     }
 }

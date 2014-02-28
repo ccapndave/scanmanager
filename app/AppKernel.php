@@ -16,6 +16,7 @@ class AppKernel extends Kernel {
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new FOS\JsRoutingBundle\FOSJsRoutingBundle(),
+            new Genemu\Bundle\FormBundle\GenemuFormBundle(),
             new DK\ScannerBundle\DKScannerBundle(),
             new DK\CoreBundle\DKCoreBundle(),
             new DK\ScanUIBundle\DKScanUIBundle(),

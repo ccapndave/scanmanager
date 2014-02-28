@@ -8,7 +8,6 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Scan
  *
- * @ORM\Table()
  * @ORM\Entity()
  */
 class Scan {
@@ -23,33 +22,38 @@ class Scan {
 
     /**
      * @var string
-     * @ORM\Column(name="type", type="string", length=255, nullable=true)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $type;
 
     /**
      * @var date
-     * @ORM\Column(name="date", type="date", nullable=true)
+     * @ORM\Column(type="date", nullable=true)
      */
     private $date;
 
     /**
      * @var string
-     * @ORM\Column(name="sender", type="string", length=255, nullable=true)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $sender;
 
     /**
      * @var string
-     * @ORM\Column(name="mimeType", type="string", length=255)
+     * @ORM\Column(type="string", length=255)
      */
     private $mimeType;
 
     /**
      * @var string
-     * @ORM\Column(name="filename", type="string", length=255)
+     * @ORM\Column(type="string", length=255)
      */
     private $filename;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="DK\CoreBundle\Entity\Tag")
+     */
+    private $tags;
 
     /**
      * Get id
@@ -163,5 +167,42 @@ class Scan {
      */
     public function getMimeType() {
         return $this->mimeType;
+    }
+
+    /**
+     * Constructor
+     */
+    public function __construct() {
+        $this->tags = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add tags
+     *
+     * @param \DK\CoreBundle\Entity\Tag $tags
+     * @return Scan
+     */
+    public function addTag(\DK\CoreBundle\Entity\Tag $tags) {
+        $this->tags[] = $tags;
+
+        return $this;
+    }
+
+    /**
+     * Remove tags
+     *
+     * @param \DK\CoreBundle\Entity\Tag $tags
+     */
+    public function removeTag(\DK\CoreBundle\Entity\Tag $tags) {
+        $this->tags->removeElement($tags);
+    }
+
+    /**
+     * Get tags
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getTags() {
+        return $this->tags;
     }
 }

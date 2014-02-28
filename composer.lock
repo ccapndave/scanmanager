@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "bcef6149833287690b959e41e754650a",
+    "hash": "b8eb60f57265439f97b55ff4b484003d",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -682,6 +682,77 @@
             "time": "2014-01-24 08:28:48"
         },
         {
+            "name": "genemu/form-bundle",
+            "version": "v2.2.1",
+            "target-dir": "Genemu/Bundle/FormBundle",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/genemu/GenemuFormBundle.git",
+                "reference": "78fcd307a69b499241d7f0fa5c1b378e77358f16"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/genemu/GenemuFormBundle/zipball/78fcd307a69b499241d7f0fa5c1b378e77358f16",
+                "reference": "78fcd307a69b499241d7f0fa5c1b378e77358f16",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.2",
+                "symfony/form": "~2.3",
+                "symfony/framework-bundle": "~2.3"
+            },
+            "require-dev": {
+                "doctrine/doctrine-bundle": "1.*",
+                "doctrine/mongodb-odm-bundle": "*",
+                "doctrine/orm": "2.*",
+                "phpunit/phpunit": "3.7.*",
+                "propel/propel-bundle": "*",
+                "symfony/doctrine-bridge": "~2.3",
+                "symfony/finder": "2.*"
+            },
+            "suggest": {
+                "symfony/doctrine-bundle": "In order to use some form types with Doctrine",
+                "symfony/finder": "For an image type",
+                "symfony/mongodb-odm-bundle": "For MongoDB integration",
+                "symfony/twig-bridge": "For integration into Twig templates"
+            },
+            "type": "symfony-bundle",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.2-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Genemu\\Bundle\\FormBundle": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Olivier Chauvel",
+                    "email": "olivier@generation-multiple.com"
+                },
+                {
+                    "name": "Community contributions",
+                    "homepage": "https://github.com/genemu/GenemuFormBundle/contributors"
+                },
+                {
+                    "name": "Bilal Amarni",
+                    "email": "bilal.amarni@gmail.com"
+                }
+            ],
+            "description": "Extra form types for your Symfony2 projects",
+            "keywords": [
+                "extra form",
+                "form"
+            ],
+            "time": "2013-07-31 22:28:58"
+        },
+        {
             "name": "incenteev/composer-parameter-handler",
             "version": "v2.1.0",
             "target-dir": "Incenteev/ParameterHandler",
@@ -782,68 +853,6 @@
                 "sql"
             ],
             "time": "2014-01-12 16:20:24"
-        },
-        {
-            "name": "jyggen/curl",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/jyggen/curl.git",
-                "reference": "8fe29e668355df179bf7659c76567e59c2cbca15"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/jyggen/curl/zipball/8fe29e668355df179bf7659c76567e59c2cbca15",
-                "reference": "8fe29e668355df179bf7659c76567e59c2cbca15",
-                "shasum": ""
-            },
-            "require": {
-                "ext-curl": "*",
-                "php": ">=5.3.0",
-                "symfony/http-foundation": "~2.0"
-            },
-            "require-dev": {
-                "league/phpunit-coverage-listener": "~1.1",
-                "mockery/mockery": "dev-master@dev",
-                "phpunit/phpunit": "~3.7"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "3.1-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Jyggen\\Curl\\": "src",
-                    "Jyggen\\Curl\\Tests\\": "tests"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Jonas Stendahl",
-                    "email": "jonas.stendahl@gmail.com",
-                    "homepage": "http://jyggen.com/",
-                    "role": "Developer"
-                }
-            ],
-            "description": "A simple and lightweight cURL library with support for multiple requests in parallel.",
-            "homepage": "https://github.com/jyggen/curl",
-            "keywords": [
-                "Multi-thread",
-                "bot",
-                "crawler",
-                "curl",
-                "http",
-                "parallel",
-                "request",
-                "spider"
-            ],
-            "time": "2014-02-12 12:56:40"
         },
         {
             "name": "kriswallsmith/assetic",
