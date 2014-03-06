@@ -15,10 +15,24 @@ class ScanType extends AbstractType {
     public function buildForm(FormBuilderInterface $builder, array $options) {
         $builder
             ->add('date', 'genemu_jquerydate', array(
-                'widget' => 'single_text'
+                'widget' => 'single_text',
+                'required' => false
             ))
-            ->add('type')
-            ->add('sender')
+            ->add('notBill')
+            ->add('paid')
+            ->add('paidOn', 'genemu_jquerydate', array(
+                'widget' => 'single_text',
+                'required' => false
+            ))
+            ->add('paidBy', 'genemu_jqueryautocomplete_text', array(
+                'suggestions' => array('Char', 'Dave', 'Joint account'),
+                'required' => false
+            ))
+            ->add('letterFor', 'genemu_jqueryautocomplete_text', array(
+                'suggestions' => array('Char', 'Dave'),
+                'required' => false,
+                'label' => 'For'
+            ))
             ->add('tags', 'genemu_jqueryselect2_entity', array(
                 'class' => 'DK\CoreBundle\Entity\Tag',
                 'multiple' => true

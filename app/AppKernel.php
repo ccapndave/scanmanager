@@ -5,6 +5,11 @@ use Symfony\Component\Config\Loader\LoaderInterface;
 
 class AppKernel extends Kernel {
 
+    public function __construct($environment, $debug) {
+        set_time_limit(90); // Multi-page scans can exceed the default PHP script timeout
+        parent::__construct($environment, $debug);
+    }
+
     public function registerBundles() {
         $bundles = array(
             new Symfony\Bundle\FrameworkBundle\FrameworkBundle(),

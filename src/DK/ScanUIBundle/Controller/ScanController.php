@@ -29,8 +29,12 @@ class ScanController extends Controller {
 
         $entities = $em->getRepository('DKCoreBundle:Scan')->findAll();
 
+        foreach ($entities as $entity)
+            $deleteForms[$entity->getId()] = $this->createDeleteForm($entity->getId())->createView();
+
         return array(
             'entities' => $entities,
+            'deleteForms' => $deleteForms
         );
     }
 
@@ -232,7 +236,7 @@ class ScanController extends Controller {
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('scan_delete', array('id' => $id)))
             ->setMethod('DELETE')
-            ->add('submit', 'submit', array('label' => 'Delete'))
+            ->add('submit', 'submit', array('label' => 'Delete'), array('class' => array('btn btn-default')))
             ->getForm();
     }
 }

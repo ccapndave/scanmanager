@@ -72,3 +72,4 @@ swiftmailer:
 genemu_form:
     select2: ~
     date: ~
+    autocomplete: ~

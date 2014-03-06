@@ -13,6 +13,23 @@
 
     <script>
         $('a.media').media({ width: "100%", height: 650 });
+
+        $('#dk_corebundle_scan_notBill').on('change', function() {
+            $('.payment-section').css('display', (this.checked) ? 'none' : 'static');
+        });
+
+        app.controller("TagController", function ($scope, $http) {
+            $scope.onAddTag = function () {
+                bootbox.prompt("Please choose a name for this tag", function(name) {
+                    if (name && name.trim() != "") {
+                        $http({ method: 'post', url: Routing.generate('dk_scanui_tag_create'), data: name.trim() })
+                            .success(function(result) {
+                                $("#dk_corebundle_scan_tags").append($('<option>' + result.tag + '</option>', { value: result.id }));
+                            });
+                    }
+                });
+            };
+        });
     </script>
 {% endblock %}
 
@@ -25,16 +42,23 @@
     <div class="col-sm-6">
         {{ form_start(edit_form) }}
         {{ form_row(edit_form.date) }}
-        {{ form_row(edit_form.type) }}
-        {{ form_row(edit_form.sender) }}
+        {{ form_row(edit_form.notBill) }}
+        <div class="payment-section">
+            {{ form_row(edit_form.paid) }}
+            {{ form_row(edit_form.paidOn) }}
+            {{ form_row(edit_form.paidBy) }}
+        </div>
+        {{ form_row(edit_form.letterFor) }}
 
         <div class="row">
             <div class="col-sm-11">
                 {{ form_row(edit_form.tags) }}
             </div>
-            <div class="col-sm-1">
+            <div class="col-sm-1" ng-controller="TagController">
                 <!-- A hacky way to get an add button onto the select -->
-                <button class="btn btn-warning" style="position: relative; right: 16px; top: 25px;">+</button>
+                <button class="btn btn-warning" style="position: relative; right: 16px; top: 25px;"
+                        ng-click="onAddTag()" onclick="return false;">+
+                </button>
             </div>
         </div>
         {{ form_end(edit_form) }}

@@ -21,12 +21,6 @@ class Scan {
     private $id;
 
     /**
-     * @var string
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $type;
-
-    /**
      * @var date
      * @ORM\Column(type="date", nullable=true)
      */
@@ -34,9 +28,33 @@ class Scan {
 
     /**
      * @var string
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\Column(type="boolean", nullable=true)
      */
-    private $sender;
+    private $notBill;
+
+    /**
+     * @var string
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $paid;
+
+    /**
+     * @var string
+     * @ORM\Column(type="date", nullable=true)
+     */
+    private $paidOn;
+
+    /**
+     * @var string
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private $paidBy;
+
+    /**
+     * @var string
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private $letterFor;
 
     /**
      * @var string
@@ -62,27 +80,6 @@ class Scan {
      */
     public function getId() {
         return $this->id;
-    }
-
-    /**
-     * Set type
-     *
-     * @param string $type
-     * @return Scan
-     */
-    public function setType($type) {
-        $this->type = $type;
-
-        return $this;
-    }
-
-    /**
-     * Get type
-     *
-     * @return string
-     */
-    public function getType() {
-        return $this->type;
     }
 
     /**
@@ -125,27 +122,6 @@ class Scan {
      */
     public function getFilename() {
         return $this->filename;
-    }
-
-    /**
-     * Set sender
-     *
-     * @param string $sender
-     * @return Scan
-     */
-    public function setSender($sender) {
-        $this->sender = $sender;
-
-        return $this;
-    }
-
-    /**
-     * Get sender
-     *
-     * @return string
-     */
-    public function getSender() {
-        return $this->sender;
     }
 
     /**
@@ -204,5 +180,111 @@ class Scan {
      */
     public function getTags() {
         return $this->tags;
+    }
+
+    /**
+     * Set paid
+     *
+     * @param boolean $paid
+     * @return Scan
+     */
+    public function setPaid($paid) {
+        $this->paid = $paid;
+
+        return $this;
+    }
+
+    /**
+     * Get paid
+     *
+     * @return boolean
+     */
+    public function getPaid() {
+        return $this->paid;
+    }
+
+    /**
+     * Set paidOn
+     *
+     * @param \DateTime $paidOn
+     * @return Scan
+     */
+    public function setPaidOn($paidOn) {
+        $this->paidOn = $paidOn;
+
+        return $this;
+    }
+
+    /**
+     * Get paidOn
+     *
+     * @return \DateTime
+     */
+    public function getPaidOn() {
+        return $this->paidOn;
+    }
+
+    /**
+     * Set paidBy
+     *
+     * @param string $paidBy
+     * @return Scan
+     */
+    public function setPaidBy($paidBy) {
+        $this->paidBy = $paidBy;
+
+        return $this;
+    }
+
+    /**
+     * Get paidBy
+     *
+     * @return string
+     */
+    public function getPaidBy() {
+        return $this->paidBy;
+    }
+
+    /**
+     * Set letterFor
+     *
+     * @param string $letterFor
+     * @return Scan
+     */
+    public function setLetterFor($letterFor) {
+        $this->letterFor = $letterFor;
+
+        return $this;
+    }
+
+    /**
+     * Get letterFor
+     *
+     * @return string
+     */
+    public function getLetterFor() {
+        return $this->letterFor;
+    }
+
+
+    /**
+     * Set notBill
+     *
+     * @param boolean $notBill
+     * @return Scan
+     */
+    public function setNotBill($notBill) {
+        $this->notBill = $notBill;
+
+        return $this;
+    }
+
+    /**
+     * Get notBill
+     *
+     * @return boolean
+     */
+    public function getNotBill() {
+        return $this->notBill;
     }
 }
